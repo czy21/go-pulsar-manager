@@ -1,5 +1,8 @@
 package main
 
+import "github.com/gin-gonic/gin"
+
 func main() {
-	println("init")
+	router := gin.Default()
+	_ = router.Run(":8080")
 }
