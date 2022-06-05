@@ -1,5 +1,7 @@
 #!/bin/bash
 
+cd $(cd "$(dirname "$0")"; pwd)
+
 web_cmd="yarn --cwd web/"
 
 if [ ${param_npm_repo} ]; then
