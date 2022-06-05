@@ -1,7 +1,5 @@
 #!/bin/bash
 
-set -x
-
 cd $(cd "$(dirname "$0")"; pwd)
 
 web_cmd="yarn --cwd web/"
@@ -13,6 +11,8 @@ fi
 if [ ${param_yarn_cache} ]; then
   web_cmd+=" --cache-folder ${param_yarn_cache}"
 fi
+
+set -x
 
 ${web_cmd} install --no-lockfile --update-checksums
 ${web_cmd} --ignore-engines build
