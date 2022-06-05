@@ -1,0 +1,29 @@
+@import "~antd/dist/antd.less";
+@import '~codemirror/theme/material.css';
+@import '~codemirror/lib/codemirror.css';
+
+.collapse {
+  font-size: 18px;
+  margin: 0 24px;
+  cursor: pointer;
+  transition: color 0.3s;
+
+  &:hover {
+    color: @primary-color;
+  }
+}
+
+.container {
+  height: 100vh;
+
+  .header {
+    background: @white;
+    padding: 0
+  }
+
+  .content {
+    margin: 8px;
+    padding: 12px;
+    background: @white;
+  }
+}

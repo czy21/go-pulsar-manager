@@ -1,8 +1,12 @@
 package main
 
-import "github.com/gin-gonic/gin"
+import (
+	"github.com/czyhome/go-pulsar-manager/controller"
+	"github.com/gin-gonic/gin"
+)
 
 func main() {
-	router := gin.Default()
-	_ = router.Run(":8080")
+	r := gin.Default()
+	controller.Admin(r)
+	_ = r.Run(":8080")
 }
