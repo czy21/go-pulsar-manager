@@ -17,4 +17,4 @@ fi
 ${web_cmd} install --no-lockfile --update-checksums
 ${web_cmd} --ignore-engines build
 
-cd api/;GOSUMDB=off go build -o build/ -x -v main.go
+cd api/;go build -o build/ -x -v main.go
