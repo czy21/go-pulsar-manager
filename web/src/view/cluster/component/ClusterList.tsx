@@ -1,10 +1,10 @@
 import stub from "@/init"
 import React from "react";
 import react from 'react'
-import InstanceAdd from "./InstanceAdd"
+import ClusterAdd from "./ClusterAdd"
 import {Table, Filter, OperationRender} from "@c";
 
-const InstanceList: React.FC<any> = (props: any) => {
+const ClusterList: React.FC<any> = (props: any) => {
 
     const [data, setData] = React.useState<any>({})
     const [query, setQuery] = React.useState<any>()
@@ -104,7 +104,7 @@ const InstanceList: React.FC<any> = (props: any) => {
                    list={data.list}
                    page={data.page}
             />
-            <InstanceAdd visible={instanceAddVisible} onChange={() => {
+            <ClusterAdd visible={instanceAddVisible} onChange={() => {
                 setInstanceAddVisible(false)
                 handleSearch(query)
             }}/>
@@ -113,4 +113,4 @@ const InstanceList: React.FC<any> = (props: any) => {
 
 }
 
-export default InstanceList
+export default ClusterList

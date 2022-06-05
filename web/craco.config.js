@@ -7,6 +7,7 @@ const path = require("path");
 module.exports = {
     eslint: {
         enable: process.env.NODE_ENV === "development"
+        // enable: false
     },
     plugins: [
         {

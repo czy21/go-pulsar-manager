@@ -1,8 +1,8 @@
 import Layout from '@/layout/Layout'
-import UserList from './component/UserList'
+import ClusterList from '@v/cluster/component/ClusterList'
 import {renderRoutes, RouteConfig} from "react-router-config";
 
-const PATH = '/user'
+const PATH = '/cluster'
 
 let routes: RouteConfig[] = [
     {
@@ -11,7 +11,7 @@ let routes: RouteConfig[] = [
         routes: [
             {
                 path: PATH,
-                component: UserList,
+                component: ClusterList,
                 exact: true
             }
         ]

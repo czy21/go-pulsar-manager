@@ -1,6 +1,6 @@
 import React from "react";
 
-export default class Detail extends React.Component<any, any> {
+export default class ClusterDetail extends React.Component<any, any> {
 
     render() {
         return (
