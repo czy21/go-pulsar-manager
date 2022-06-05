@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -x
+
 cd $(cd "$(dirname "$0")"; pwd)
 
 web_cmd="yarn --cwd web/"
