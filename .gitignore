@@ -28,6 +28,8 @@ yarn-error.log*
 build/
 ___output/
 __pycache__/
+/script
+/share
 
 # go
 *.exe
