@@ -2,7 +2,7 @@ import stub from "@/init"
 import React from "react";
 import react from 'react'
 import ClusterAdd from "./ClusterAdd"
-import {Table, Filter, FormatMessage, OperationRender} from "@c";
+import {Table, Filter, OperationRender,intl} from "@c";
 
 const ClusterList: React.FC<any> = (props: any) => {
 
@@ -16,7 +16,7 @@ const ClusterList: React.FC<any> = (props: any) => {
     const operationActions = [
         {
             key: "edit",
-            label: <stub.component.FormatMessage id={"cluster.edit"}/>,
+            label: <intl.FormatMessage id={"cluster.edit"}/>,
             onClick: (text: any, record: any) => {
                 console.log(record)
             }
@@ -25,7 +25,7 @@ const ClusterList: React.FC<any> = (props: any) => {
     const columns = [
         {
             key: 'name',
-            header: <stub.component.FormatMessage id={"cluster.name"}/>,
+            header: <intl.FormatMessage id={"cluster.name"}/>,
             render: (text: any, record: any) => {
                 return (
                     <a onClick={() => {
@@ -36,15 +36,15 @@ const ClusterList: React.FC<any> = (props: any) => {
         },
         {
             key: 'host',
-            header: <stub.component.FormatMessage id={"cluster.host"}/>,
+            header: <intl.FormatMessage id={"cluster.host"}/>,
         },
         {
             key: 'description',
-            header: <stub.component.FormatMessage id={"cluster.description"}/>,
+            header: <intl.FormatMessage id={"cluster.description"}/>,
         },
         {
             key: 'operation',
-            header: <stub.component.FormatMessage id={"table.operation"}/>,
+            header: <intl.FormatMessage id={"table.operation"}/>,
             render: (text: any, record: any) => OperationRender(text, record, operationActions)
         }
     ];
@@ -72,7 +72,7 @@ const ClusterList: React.FC<any> = (props: any) => {
     const extension = (
         <stub.ref.antd.Space>
             <stub.ref.antd.Button type={"primary"} onClick={() => setClusterAddVisible(true)}>
-                {<stub.component.FormatMessage id={"cluster.add"}/>}
+                {<intl.FormatMessage id={"cluster.add"}/>}
             </stub.ref.antd.Button>
         </stub.ref.antd.Space>
     )

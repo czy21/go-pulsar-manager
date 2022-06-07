@@ -1,7 +1,7 @@
 import stub from "@/init";
 import React from "react";
 
-import {Modal} from '@c'
+import {Modal, intl} from '@c'
 
 interface TableFormProp {
     visible: boolean
@@ -52,12 +52,12 @@ const ClusterAdd: React.FC<TableFormProp> = (props: TableFormProp | any) => {
                                     labelCol={{span: 8}}
                                     wrapperCol={{span: 10}}
                 >
-                    <stub.ref.antd.Form.Item label={<stub.ref.intl.FormattedMessage id={"cluster.name"} defaultMessage={""}/>} name={"name"}
+                    <stub.ref.antd.Form.Item label={<intl.FormatMessage id={"cluster.name"}/>} name={"name"}
                                              rules={[{required: true}]}
                     >
                         <stub.ref.antd.Input/>
                     </stub.ref.antd.Form.Item>
-                    <stub.ref.antd.Form.Item label={<stub.ref.intl.FormattedMessage id={"cluster.host"} defaultMessage={""}/>} name={"host"}
+                    <stub.ref.antd.Form.Item label={<intl.FormatMessage id={"cluster.host"}/>} name={"host"}
                                              rules={[{required: true}]}
                     >
                         <stub.ref.antd.Input/>
@@ -69,7 +69,7 @@ const ClusterAdd: React.FC<TableFormProp> = (props: TableFormProp | any) => {
                                 (connectState ? <stub.ref.icon.ai.CheckCircleTwoTone twoToneColor={"#52c41a"}/> : <stub.ref.icon.ai.CloseCircleTwoTone twoToneColor={"#ff4d4f"}/>) : ""}
                         </stub.ref.antd.Space>
                     </stub.ref.antd.Form.Item>
-                    <stub.ref.antd.Form.Item label={<stub.ref.intl.FormattedMessage id={"cluster.description"} defaultMessage={""}/>} name={"description"}>
+                    <stub.ref.antd.Form.Item label={<intl.FormatMessage id={"cluster.description"}/>} name={"description"}>
                         <stub.ref.antd.Input.TextArea/>
                     </stub.ref.antd.Form.Item>
                 </stub.ref.antd.Form>
