@@ -1,8 +1,6 @@
 package controller
 
-import (
-	"github.com/gin-gonic/gin"
-)
+import "github.com/gin-gonic/gin"
 
 func adminProxy(c *gin.Context) {
 	//remote, err := url.Parse("http://baidu.com")
@@ -21,6 +19,6 @@ func adminProxy(c *gin.Context) {
 	//proxy.ServeHTTP(c.Writer, c.Request)
 }
 
-func Admin(r *gin.Engine) {
+func AdminController(r *gin.Engine) {
 	r.Any("/admin/v2/*proxyPath", adminProxy)
 }

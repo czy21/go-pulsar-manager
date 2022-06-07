@@ -1,12 +1,7 @@
 package main
 
-import (
-	"github.com/czyhome/go-pulsar-manager/controller"
-	"github.com/gin-gonic/gin"
-)
+import bootstrap "github.com/czyhome/go-pulsar-manager/bootstrap"
 
 func main() {
-	r := gin.Default()
-	controller.Admin(r)
-	_ = r.Run(":8080")
+	bootstrap.Boot()
 }

@@ -1,5 +1,5 @@
 package bootstrap
 
-func init() {
-
+func Boot() {
+	bootRouter()
 }
