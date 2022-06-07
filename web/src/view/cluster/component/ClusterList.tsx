@@ -2,7 +2,7 @@ import stub from "@/init"
 import React from "react";
 import react from 'react'
 import ClusterAdd from "./ClusterAdd"
-import {Table, Filter, OperationRender} from "@c";
+import {Table, Filter, FormatMessage, OperationRender} from "@c";
 
 const ClusterList: React.FC<any> = (props: any) => {
 
@@ -16,7 +16,7 @@ const ClusterList: React.FC<any> = (props: any) => {
     const operationActions = [
         {
             key: "edit",
-            label: <stub.ref.intl.FormattedMessage id={"cluster.edit"} defaultMessage={""}/>,
+            label: <stub.component.FormatMessage id={"cluster.edit"}/>,
             onClick: (text: any, record: any) => {
                 console.log(record)
             }
@@ -25,7 +25,7 @@ const ClusterList: React.FC<any> = (props: any) => {
     const columns = [
         {
             key: 'name',
-            header: <stub.ref.intl.FormattedMessage id={"cluster.name"} defaultMessage={""}/>,
+            header: <stub.component.FormatMessage id={"cluster.name"}/>,
             render: (text: any, record: any) => {
                 return (
                     <a onClick={() => {
@@ -36,15 +36,15 @@ const ClusterList: React.FC<any> = (props: any) => {
         },
         {
             key: 'host',
-            header: <stub.ref.intl.FormattedMessage id={"cluster.host"} defaultMessage={""}/>,
+            header: <stub.component.FormatMessage id={"cluster.host"}/>,
         },
         {
             key: 'description',
-            header: <stub.ref.intl.FormattedMessage id={"cluster.description"} defaultMessage={""}/>,
+            header: <stub.component.FormatMessage id={"cluster.description"}/>,
         },
         {
             key: 'operation',
-            header: <stub.ref.intl.FormattedMessage id={"table.operation"} defaultMessage={""}/>,
+            header: <stub.component.FormatMessage id={"table.operation"}/>,
             render: (text: any, record: any) => OperationRender(text, record, operationActions)
         }
     ];
@@ -52,14 +52,15 @@ const ClusterList: React.FC<any> = (props: any) => {
     const handleSearch = (q?: any) => {
         setQuery(q)
         setData({
-            page:{
-                pageIndex:1,
-                pageSize:10
+            page: {
+                pageIndex: 1,
+                pageSize: 10
             },
-            list:[
+            list: [
                 {
-                    name:"集群1",
-                    host:"地址1"
+                    id: 1,
+                    name: "集群1",
+                    host: "地址1"
                 }
             ]
         })
@@ -68,32 +69,27 @@ const ClusterList: React.FC<any> = (props: any) => {
 
     const [clusterAddVisible, setClusterAddVisible] = React.useState<boolean>(false);
 
-    const filter = (
-        <Filter
-            filters={[
-                {
-                    "key": "name",
-                    "label": "名称"
-                }
-            ]}
-            onSearch={handleSearch}
-            page={data.page}
-        />
-    )
-
     const extension = (
         <stub.ref.antd.Space>
             <stub.ref.antd.Button type={"primary"} onClick={() => setClusterAddVisible(true)}>
-                {<stub.ref.intl.FormattedMessage id={"cluster.add"} defaultMessage={""}/>}
+                {<stub.component.FormatMessage id={"cluster.add"}/>}
             </stub.ref.antd.Button>
         </stub.ref.antd.Space>
     )
 
     return (
         <div>
-            <Table filter={filter}
-                   extension={extension}
-                   columns={columns}
+            <Filter
+                filters={[
+                    {
+                        "key": "name",
+                        "label": "名称"
+                    }
+                ]}
+                onSearch={handleSearch}
+                page={data.page}
+            />
+            <Table columns={columns}
                    list={data.list}
                    page={data.page}
             />
