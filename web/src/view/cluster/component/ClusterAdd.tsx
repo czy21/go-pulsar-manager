@@ -43,7 +43,7 @@ const ClusterAdd: React.FC<TableFormProp> = (props: TableFormProp | any) => {
     return (
         <div>
             <Modal
-                title={"添加实例"}
+                title={"添加集群"}
                 width={600}
                 visible={visible}
                 onOk={handleOk}
@@ -52,35 +52,15 @@ const ClusterAdd: React.FC<TableFormProp> = (props: TableFormProp | any) => {
                                     labelCol={{span: 8}}
                                     wrapperCol={{span: 10}}
                 >
-                    <stub.ref.antd.Form.Item label={<stub.ref.intl.FormattedMessage id={"db.instance.add.name"} defaultMessage={""}/>} name={"name"}
+                    <stub.ref.antd.Form.Item label={<stub.ref.intl.FormattedMessage id={"cluster.name"} defaultMessage={""}/>} name={"name"}
                                              rules={[{required: true}]}
                     >
                         <stub.ref.antd.Input/>
                     </stub.ref.antd.Form.Item>
-                    <stub.ref.antd.Form.Item label={<stub.ref.intl.FormattedMessage id={"db.instance.add.kind"} defaultMessage={""}/>} name={"kind"}
-                                             rules={[{required: true}]}
-                    >
-                        <stub.ref.antd.Select options={props.globalOption.dbInstanceKind}/>
-                    </stub.ref.antd.Form.Item>
-                    <stub.ref.antd.Form.Item label={<stub.ref.intl.FormattedMessage id={"db.instance.add.host"} defaultMessage={""}/>} name={"host"}
+                    <stub.ref.antd.Form.Item label={<stub.ref.intl.FormattedMessage id={"cluster.host"} defaultMessage={""}/>} name={"host"}
                                              rules={[{required: true}]}
                     >
                         <stub.ref.antd.Input/>
-                    </stub.ref.antd.Form.Item>
-                    <stub.ref.antd.Form.Item label={<stub.ref.intl.FormattedMessage id={"db.instance.add.port"} defaultMessage={""}/>} name={"port"}
-                                             rules={[{required: true}]}
-                    >
-                        <stub.ref.antd.Input/>
-                    </stub.ref.antd.Form.Item>
-                    <stub.ref.antd.Form.Item label={<stub.ref.intl.FormattedMessage id={"db.instance.add.username"} defaultMessage={""}/>} name={"username"}
-                                             rules={[{required: true}]}
-                    >
-                        <stub.ref.antd.Input/>
-                    </stub.ref.antd.Form.Item>
-                    <stub.ref.antd.Form.Item label={<stub.ref.intl.FormattedMessage id={"db.instance.add.password"} defaultMessage={""}/>} name={"password"}
-                                             rules={[{required: true}]}
-                    >
-                        <stub.ref.antd.Input.Password/>
                     </stub.ref.antd.Form.Item>
                     <stub.ref.antd.Form.Item {...{wrapperCol: {offset: 8}}}>
                         <stub.ref.antd.Space>
@@ -89,7 +69,7 @@ const ClusterAdd: React.FC<TableFormProp> = (props: TableFormProp | any) => {
                                 (connectState ? <stub.ref.icon.ai.CheckCircleTwoTone twoToneColor={"#52c41a"}/> : <stub.ref.icon.ai.CloseCircleTwoTone twoToneColor={"#ff4d4f"}/>) : ""}
                         </stub.ref.antd.Space>
                     </stub.ref.antd.Form.Item>
-                    <stub.ref.antd.Form.Item label={<stub.ref.intl.FormattedMessage id={"db.instance.add.description"} defaultMessage={""}/>} name={"description"}>
+                    <stub.ref.antd.Form.Item label={<stub.ref.intl.FormattedMessage id={"cluster.description"} defaultMessage={""}/>} name={"description"}>
                         <stub.ref.antd.Input.TextArea/>
                     </stub.ref.antd.Form.Item>
                 </stub.ref.antd.Form>

@@ -10,13 +10,13 @@ const ClusterList: React.FC<any> = (props: any) => {
     const [query, setQuery] = React.useState<any>()
 
     react.useEffect(() => {
-        stub.store.dispatch(stub.reducer.action.option.fetch(["dbInstanceKind", "genderKind"]))
+        // stub.store.dispatch(stub.reducer.action.option.fetch(["dbInstanceKind", "genderKind"]))
         handleSearch()
     }, [])
     const operationActions = [
         {
-            key: "backup",
-            label: <stub.ref.intl.FormattedMessage id={"db.instance.list.backup"} defaultMessage={""}/>,
+            key: "edit",
+            label: <stub.ref.intl.FormattedMessage id={"cluster.edit"} defaultMessage={""}/>,
             onClick: (text: any, record: any) => {
                 console.log(record)
             }
@@ -25,7 +25,7 @@ const ClusterList: React.FC<any> = (props: any) => {
     const columns = [
         {
             key: 'name',
-            header: <stub.ref.intl.FormattedMessage id={"db.instance.list.name"} defaultMessage={""}/>,
+            header: <stub.ref.intl.FormattedMessage id={"cluster.name"} defaultMessage={""}/>,
             render: (text: any, record: any) => {
                 return (
                     <a onClick={() => {
@@ -36,26 +36,11 @@ const ClusterList: React.FC<any> = (props: any) => {
         },
         {
             key: 'host',
-            header: <stub.ref.intl.FormattedMessage id={"db.instance.list.host"} defaultMessage={""}/>,
-        },
-        {
-            key: 'port',
-            header: <stub.ref.intl.FormattedMessage id={"db.instance.list.port"} defaultMessage={""}/>,
-        },
-        {
-            key: 'username',
-            header: <stub.ref.intl.FormattedMessage id={"db.instance.list.username"} defaultMessage={""}/>,
-        },
-        {
-            key: 'password',
-            header: <stub.ref.intl.FormattedMessage id={"db.instance.list.password"} defaultMessage={""}/>,
-            render: (text: any, record: any) => (
-                <div>{text}</div>
-            )
+            header: <stub.ref.intl.FormattedMessage id={"cluster.host"} defaultMessage={""}/>,
         },
         {
             key: 'description',
-            header: <stub.ref.intl.FormattedMessage id={"db.instance.list.description"} defaultMessage={""}/>,
+            header: <stub.ref.intl.FormattedMessage id={"cluster.description"} defaultMessage={""}/>,
         },
         {
             key: 'operation',
@@ -66,10 +51,22 @@ const ClusterList: React.FC<any> = (props: any) => {
 
     const handleSearch = (q?: any) => {
         setQuery(q)
-        stub.api.post("db/instance/search", stub.ref.lodash.omit(q, "total")).then((t: any) => setData(t.data))
+        setData({
+            page:{
+                pageIndex:1,
+                pageSize:10
+            },
+            list:[
+                {
+                    name:"集群1",
+                    host:"地址1"
+                }
+            ]
+        })
+        // stub.api.post("db/instance/search", stub.ref.lodash.omit(q, "total")).then((t: any) => setData(t.data))
     }
 
-    const [instanceAddVisible, setInstanceAddVisible] = React.useState<boolean>(false);
+    const [clusterAddVisible, setClusterAddVisible] = React.useState<boolean>(false);
 
     const filter = (
         <Filter
@@ -77,11 +74,7 @@ const ClusterList: React.FC<any> = (props: any) => {
                 {
                     "key": "name",
                     "label": "名称"
-                },
-                {
-                    "key": "address",
-                    "label": "地址"
-                },
+                }
             ]}
             onSearch={handleSearch}
             page={data.page}
@@ -90,8 +83,8 @@ const ClusterList: React.FC<any> = (props: any) => {
 
     const extension = (
         <stub.ref.antd.Space>
-            <stub.ref.antd.Button type={"primary"} onClick={() => setInstanceAddVisible(true)}>
-                {<stub.ref.intl.FormattedMessage id={"db.instance.add.btn"} defaultMessage={""}/>}
+            <stub.ref.antd.Button type={"primary"} onClick={() => setClusterAddVisible(true)}>
+                {<stub.ref.intl.FormattedMessage id={"cluster.add"} defaultMessage={""}/>}
             </stub.ref.antd.Button>
         </stub.ref.antd.Space>
     )
@@ -104,8 +97,8 @@ const ClusterList: React.FC<any> = (props: any) => {
                    list={data.list}
                    page={data.page}
             />
-            <ClusterAdd visible={instanceAddVisible} onChange={() => {
-                setInstanceAddVisible(false)
+            <ClusterAdd visible={clusterAddVisible} onChange={() => {
+                setClusterAddVisible(false)
                 handleSearch(query)
             }}/>
         </div>
