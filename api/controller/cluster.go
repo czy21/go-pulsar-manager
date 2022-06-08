@@ -1,26 +1,22 @@
 package controller
 
 import (
+	"github.com/czyhome/go-pulsar-manager/constant"
+	"github.com/czyhome/go-pulsar-manager/exception"
 	"github.com/czyhome/go-pulsar-manager/model"
 	"github.com/czyhome/go-pulsar-manager/service"
 	"github.com/czyhome/go-pulsar-manager/web"
 	"github.com/gin-gonic/gin"
+	"github.com/spf13/viper"
 )
 
 func ClusterSearch(c *gin.Context) {
-	list := []map[string]interface{}{
-		{
-			"id":   1,
-			"name": "cluster1",
-			"url":  "url1",
-		},
-		{
-			"id":   2,
-			"name": "cluster2",
-			"url":  "url1",
-		},
-	}
-	pageResult := web.PageResult[map[string]interface{}]{Page: web.PageModel{PageIndex: 1, PageSize: 10, Total: 10}, List: list}
+	input := model.ClusterQuery{}
+	input.PageIndex = constant.DefaultPageIndex
+	input.PageSize = constant.DefaultPageSize
+	err := c.Bind(&input)
+	exception.Check(err)
+	pageResult := service.Cluster{}.Paging(input)
 	web.Context{Context: c}.OK(web.ResponseModel{Data: pageResult}.Build())
 
 }
@@ -28,7 +24,7 @@ func ClusterSearch(c *gin.Context) {
 func ClusterAdd(c *gin.Context) {
 	input := model.ClusterPO{}
 	err := c.Bind(&input)
-	web.CheckError(err)
+	exception.Check(err)
 	service.Cluster{}.Create(input)
 }
 
@@ -37,7 +33,7 @@ func ClusterEdit(c *gin.Context) {
 	//web.Response{Context: c,
 	//	Data: map[string]interface{}{"status": "success"},
 	//}.Build()
-
+	web.Context{Context: c}.OK(web.ResponseModel{Data: viper.Get("name")}.Build())
 }
 
 func ClusterDel(c *gin.Context) {

@@ -2,8 +2,8 @@ package repository
 
 import (
 	"database/sql"
-	"fmt"
-	"github.com/czyhome/go-pulsar-manager/web"
+	"github.com/czyhome/go-pulsar-manager/exception"
+	"github.com/spf13/viper"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"
@@ -11,12 +11,11 @@ import (
 
 var dbClient *gorm.DB
 
-func init() {
-	var err error
-	dbConnect, err := sql.Open("mysql", fmt.Sprintf("%s:%s@tcp(%s:%s)/go-pulsar-manager?charset=utf8mb4&parseTime=True", "admin", "***REMOVED***", "192.168.2.18", "3306"))
+func Boot() {
+	dbConnect, err := sql.Open(viper.GetString("db.driver-name"), viper.GetString("db.url"))
 	dbConnect.SetMaxIdleConns(5)
 	dbConnect.SetMaxOpenConns(10)
-	web.CheckError(err)
+	exception.Check(err)
 	dbClient, err = gorm.Open(mysql.New(mysql.Config{
 		Conn: dbConnect,
 	}), &gorm.Config{
