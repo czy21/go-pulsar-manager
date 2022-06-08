@@ -8,7 +8,7 @@ interface TableFormProp {
     onChange: () => void
 }
 
-const ClusterAdd: React.FC<TableFormProp> = (props: TableFormProp | any) => {
+const NamespaceAdd: React.FC<TableFormProp> = (props: TableFormProp | any) => {
     const [visible, setVisible] = React.useState<boolean>(false)
     const [connectState, setConnectState] = React.useState<boolean>()
     React.useEffect(() => setVisible(props.visible as boolean), [props.visible])
@@ -78,4 +78,4 @@ const ClusterAdd: React.FC<TableFormProp> = (props: TableFormProp | any) => {
     )
 }
 
-export default stub.ref.reactRedux.connect(stub.util.basic.mapGlobalOptionStateToProps)(ClusterAdd)
+export default stub.ref.reactRedux.connect(stub.util.basic.mapGlobalOptionStateToProps)(NamespaceAdd)

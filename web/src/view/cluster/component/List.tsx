@@ -1,10 +1,10 @@
 import stub from "@/init"
 import React from "react";
-import react from 'react'
-import ClusterAdd from "./ClusterAdd"
-import {Table, Filter, OperationRender, intl} from "@c";
+import react from "react";
+import ClusterAdd from "./Add"
+import {Filter, intl, OperationRender, Table} from "@c";
 
-const ClusterList: React.FC<any> = (props: any) => {
+const Index: React.FC<any> = (props: any) => {
 
     const [data, setData] = React.useState<any>({})
     const [query, setQuery] = React.useState<any>()
@@ -89,4 +89,4 @@ const ClusterList: React.FC<any> = (props: any) => {
 
 }
 
-export default ClusterList
+export default Index
