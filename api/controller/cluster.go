@@ -1,6 +1,8 @@
 package controller
 
 import (
+	"github.com/czyhome/go-pulsar-manager/model"
+	"github.com/czyhome/go-pulsar-manager/service"
 	"github.com/czyhome/go-pulsar-manager/web"
 	"github.com/gin-gonic/gin"
 )
@@ -24,11 +26,10 @@ func ClusterSearch(c *gin.Context) {
 }
 
 func ClusterAdd(c *gin.Context) {
-
-	//web.Response{Context: c,
-	//	Data: map[string]interface{}{"status": "success"},
-	//}.Build()
-
+	input := model.ClusterPO{}
+	err := c.Bind(&input)
+	web.CheckError(err)
+	service.Cluster{}.Create(input)
 }
 
 func ClusterEdit(c *gin.Context) {
