@@ -20,4 +20,5 @@ type ClusterDTO struct {
 
 type ClusterQuery struct {
 	BaseQuery[int64]
+	Url string `json:"url"`
 }
