@@ -20,6 +20,6 @@ func init() {
 	dbClient, err = gorm.Open(mysql.New(mysql.Config{
 		Conn: dbConnect,
 	}), &gorm.Config{
-		Logger: logger.Default.LogMode(logger.Silent),
+		Logger: logger.Default.LogMode(logger.Info),
 	})
 }

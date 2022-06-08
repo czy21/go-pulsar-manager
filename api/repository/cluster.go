@@ -6,5 +6,5 @@ type Cluster struct {
 }
 
 func (Cluster) InsertOne(po model.ClusterPO) {
-	dbClient.Create(po)
+	dbClient.Create(&po)
 }

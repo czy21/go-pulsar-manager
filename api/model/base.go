@@ -8,10 +8,10 @@ type Tabler interface {
 
 type BaseEntity[TID any] struct {
 	Id         TID           `gorm:"column:id" json:"id"`
-	CreateTime *web.UnixTime `gorm:"column:created_date" json:"createTime"`
-	CreateUser string        `gorm:"column:created_user" json:"createUser"`
-	UpdateTime *web.UnixTime `gorm:"column:modified_date" json:"updateTime"`
-	UpdateUser string        `gorm:"column:modified_user" json:"updateUser"`
+	CreateTime *web.UnixTime `gorm:"column:create_time;default:null" json:"createTime"`
+	CreateUser string        `gorm:"column:create_user" json:"createUser"`
+	UpdateTime *web.UnixTime `gorm:"column:update_time;default:null" json:"updateTime"`
+	UpdateUser string        `gorm:"column:update_user" json:"updateUser"`
 }
 
 type BaseQuery[TID any] struct {
