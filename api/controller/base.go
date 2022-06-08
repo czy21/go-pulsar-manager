@@ -17,5 +17,6 @@ func Boot() {
 	}
 	AdminController(r)
 	ClusterController(r)
+	TenantController(r)
 	_ = r.Run(fmt.Sprintf(":%s", viper.GetString("server.port")))
 }

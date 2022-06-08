@@ -8,7 +8,7 @@ interface TableFormProp {
     onChange: () => void
 }
 
-const NamespaceAdd: React.FC<TableFormProp> = (props: TableFormProp | any) => {
+const Index: React.FC<TableFormProp> = (props: TableFormProp | any) => {
     const [visible, setVisible] = React.useState<boolean>(false)
     const [connectState, setConnectState] = React.useState<boolean>()
     React.useEffect(() => setVisible(props.visible as boolean), [props.visible])
@@ -78,4 +78,4 @@ const NamespaceAdd: React.FC<TableFormProp> = (props: TableFormProp | any) => {
     )
 }
 
-export default stub.ref.reactRedux.connect(stub.util.basic.mapGlobalOptionStateToProps)(NamespaceAdd)
+export default stub.ref.reactRedux.connect(stub.util.basic.mapGlobalOptionStateToProps)(Index)
