@@ -2,8 +2,6 @@ package web
 
 import (
 	"fmt"
-	"github.com/gin-gonic/gin"
-	"net/http"
 	"time"
 )
 
@@ -13,22 +11,24 @@ func (t UnixTime) MarshalJSON() ([]byte, error) {
 	return []byte(fmt.Sprintf("%d", time.Time(t).UnixMilli())), nil
 }
 
-type Response struct {
-	Context   *gin.Context              `json:"-"`
-	Data      interface{}               `json:"data"`
-	Page      *PageModel                `json:"page,omitempty"`
-	Error     *interface{}              `json:"error,omitempty"`
-	Option    *map[string][]interface{} `json:"option,omitempty"`
-	Timestamp UnixTime                  `json:"timestamp"`
+type ResponseModel struct {
+	Data      interface{}  `json:"data"`
+	Error     *interface{} `json:"error,omitempty"`
+	Timestamp UnixTime     `json:"timestamp"`
 }
 
-func (r Response) Build() {
+func (r ResponseModel) Build() ResponseModel {
 	r.Timestamp = UnixTime(time.Now())
-	r.Context.JSON(http.StatusOK, r)
+	return r
 }
 
 type PageModel struct {
 	PageIndex int `json:"pageIndex"`
 	PageSize  int `json:"pageSize"`
 	Total     int `json:"total"`
+}
+
+type PageResult[T any] struct {
+	List []T       `json:"list"`
+	Page PageModel `json:"page,omitempty"`
 }

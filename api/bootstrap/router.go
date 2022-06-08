@@ -7,5 +7,5 @@ func bootRouter() {
 	r := gin.Default()
 	controller.AdminController(r)
 	controller.ClusterController(r)
-	_ = r.Run(":8080")
+	_ = r.Run(":5000")
 }

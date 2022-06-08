@@ -2,7 +2,7 @@ import stub from "@/init"
 import React from "react";
 import react from 'react'
 import ClusterAdd from "./ClusterAdd"
-import {Table, Filter, OperationRender,intl} from "@c";
+import {Table, Filter, OperationRender, intl} from "@c";
 
 const ClusterList: React.FC<any> = (props: any) => {
 
@@ -35,8 +35,8 @@ const ClusterList: React.FC<any> = (props: any) => {
             }
         },
         {
-            key: 'host',
-            header: <intl.FormatMessage id={"cluster.host"}/>,
+            key: 'url',
+            header: <intl.FormatMessage id={"cluster.url"}/>,
         },
         {
             key: 'description',
@@ -51,20 +51,7 @@ const ClusterList: React.FC<any> = (props: any) => {
 
     const handleSearch = (q?: any) => {
         setQuery(q)
-        setData({
-            page: {
-                pageIndex: 1,
-                pageSize: 10
-            },
-            list: [
-                {
-                    id: 1,
-                    name: "集群1",
-                    host: "地址1"
-                }
-            ]
-        })
-        // stub.api.post("db/instance/search", stub.ref.lodash.omit(q, "total")).then((t: any) => setData(t.data))
+        stub.api.post("cluster/search", stub.ref.lodash.omit(q, "total")).then((t: any) => setData(t.data.data))
     }
 
     const [clusterAddVisible, setClusterAddVisible] = React.useState<boolean>(false);

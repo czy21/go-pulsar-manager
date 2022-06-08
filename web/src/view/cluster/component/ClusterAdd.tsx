@@ -57,7 +57,7 @@ const ClusterAdd: React.FC<TableFormProp> = (props: TableFormProp | any) => {
                     >
                         <stub.ref.antd.Input/>
                     </stub.ref.antd.Form.Item>
-                    <stub.ref.antd.Form.Item label={<intl.FormatMessage id={"cluster.host"}/>} name={"host"}
+                    <stub.ref.antd.Form.Item label={<intl.FormatMessage id={"cluster.url"}/>} name={"url"}
                                              rules={[{required: true}]}
                     >
                         <stub.ref.antd.Input/>
