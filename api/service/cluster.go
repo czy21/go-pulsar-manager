@@ -8,9 +8,8 @@ import (
 type Cluster struct {
 }
 
-func (Cluster) Paging(query model.ClusterQuery) model.PageResult[model.ClusterPO] {
-	list, page := repository.Cluster{}.SelectPage(query)
-	return model.PageResult[model.ClusterPO]{Page: page, List: list}
+func (Cluster) FindList(query model.ClusterQuery) []model.ClusterPO {
+	return repository.Cluster{}.SelectListBy(query)
 }
 
 func (Cluster) Create(po model.ClusterPO) {
