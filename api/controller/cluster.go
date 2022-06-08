@@ -17,8 +17,7 @@ func ClusterSearch(c *gin.Context) {
 	err := c.Bind(&input)
 	exception.Check(err)
 	pageResult := service.Cluster{}.Paging(input)
-	web.Context{Context: c}.OK(web.ResponseModel{Data: pageResult}.Build())
-
+	web.Context{Context: c}.OK(model.ResponseModel{Data: pageResult}.Build())
 }
 
 func ClusterAdd(c *gin.Context) {
@@ -33,7 +32,7 @@ func ClusterEdit(c *gin.Context) {
 	//web.Response{Context: c,
 	//	Data: map[string]interface{}{"status": "success"},
 	//}.Build()
-	web.Context{Context: c}.OK(web.ResponseModel{Data: viper.Get("name")}.Build())
+	web.Context{Context: c}.OK(model.ResponseModel{Data: viper.Get("name")}.Build())
 }
 
 func ClusterDel(c *gin.Context) {
