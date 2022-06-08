@@ -1,13 +1,10 @@
 package web
 
 import (
-	"fmt"
 	"github.com/czyhome/go-pulsar-manager/exception"
+	"github.com/czyhome/go-pulsar-manager/model"
 	"github.com/gin-gonic/gin"
-	"github.com/go-playground/validator/v10"
 	"net/http"
-
-	"time"
 )
 
 func ErrorHandle() gin.HandlerFunc {
@@ -16,7 +13,7 @@ func ErrorHandle() gin.HandlerFunc {
 			if err := recover(); err != nil {
 				switch err.(type) {
 				case exception.Model:
-					c.JSON(http.StatusOK, ResponseModel{Error: &err})
+					c.JSON(http.StatusOK, model.ResponseModel{Error: &err})
 					break
 				}
 				panic(err)
@@ -31,10 +28,4 @@ func ResponseHandler() gin.HandlerFunc {
 
 		c.Next()
 	}
-}
-
-func DateValidator(fl validator.FieldLevel) bool {
-	date, ok := fl.Field().Interface().(time.Time)
-	fmt.Println(date, ok)
-	return true
 }

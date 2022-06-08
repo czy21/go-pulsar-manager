@@ -1,23 +1,32 @@
 package model
 
-import "github.com/czyhome/go-pulsar-manager/web"
-
 type Tabler interface {
 	TableName() string
 }
 
+type PageModel struct {
+	PageIndex int   `json:"pageIndex"`
+	PageSize  int   `json:"pageSize"`
+	Total     int64 `json:"total"`
+}
+
+type PageResult[T any] struct {
+	List []T       `json:"list"`
+	Page PageModel `json:"page,omitempty"`
+}
+
 type BaseEntity[TID any] struct {
-	Id         TID           `gorm:"column:id" json:"id"`
-	CreateTime *web.UnixTime `gorm:"column:create_time;default:null" json:"createTime"`
-	CreateUser string        `gorm:"column:create_user" json:"createUser"`
-	UpdateTime *web.UnixTime `gorm:"column:update_time;default:null" json:"updateTime"`
-	UpdateUser string        `gorm:"column:update_user" json:"updateUser"`
+	Id         TID       `gorm:"column:id" json:"id"`
+	CreateTime *UnixTime `gorm:"column:create_time;default:null" json:"createTime"`
+	CreateUser string    `gorm:"column:create_user" json:"createUser"`
+	UpdateTime *UnixTime `gorm:"column:update_time;default:null" json:"updateTime"`
+	UpdateUser string    `gorm:"column:update_user" json:"updateUser"`
 }
 
 type BaseQuery[TID any] struct {
 	Id   TID    `json:"id"`
 	Name string `json:"name"`
-	web.PageModel
+	PageModel
 }
 
 type SimpleItemModel[T any] struct {

@@ -1,4 +1,4 @@
-package web
+package model
 
 import (
 	"fmt"
@@ -20,15 +20,4 @@ type ResponseModel struct {
 func (r ResponseModel) Build() ResponseModel {
 	r.Timestamp = UnixTime(time.Now())
 	return r
-}
-
-type PageModel struct {
-	PageIndex int   `json:"pageIndex"`
-	PageSize  int   `json:"pageSize"`
-	Total     int64 `json:"total"`
-}
-
-type PageResult[T any] struct {
-	List []T       `json:"list"`
-	Page PageModel `json:"page,omitempty"`
 }
