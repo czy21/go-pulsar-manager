@@ -2,6 +2,7 @@ package web
 
 import (
 	"github.com/gin-gonic/gin"
+	"net/http"
 )
 
 func ErrorHandle() gin.HandlerFunc {
@@ -10,7 +11,7 @@ func ErrorHandle() gin.HandlerFunc {
 			if err := recover(); err != nil {
 				switch err.(type) {
 				case ExceptionModel:
-					Response{Context: c, Error: &err}.Build()
+					c.JSON(http.StatusOK, ResponseModel{Error: &err})
 					break
 				}
 				panic(err)

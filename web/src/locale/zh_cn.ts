@@ -7,7 +7,7 @@ export default {
     "common.filter.search": "查询",
     "cluster.add": "添加",
     "cluster.name": "名称",
-    "cluster.host": "地址",
+    "cluster.url": "地址",
     "cluster.description": "描述",
     "cluster.edit": "编辑",
     "cluster.del": "删除"

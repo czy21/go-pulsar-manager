@@ -36,7 +36,7 @@ function apiAxios(method: Method, url: string, params: any) {
             data: method === 'POST' || method === 'PUT' ? params : null,
             params: method === 'GET' || method === 'DELETE' ? params : null
         }).then(res => {
-            return resolve(res.data)
+            return resolve(res)
         }, error => {
             return reject(error)
         }).catch(error => reject(error))
