@@ -23,9 +23,9 @@ func (r ResponseModel) Build() ResponseModel {
 }
 
 type PageModel struct {
-	PageIndex int `json:"pageIndex"`
-	PageSize  int `json:"pageSize"`
-	Total     int `json:"total"`
+	PageIndex int   `json:"pageIndex"`
+	PageSize  int   `json:"pageSize"`
+	Total     int64 `json:"total"`
 }
 
 type PageResult[T any] struct {

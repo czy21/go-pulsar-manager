@@ -17,3 +17,7 @@ type ClusterDTO struct {
 	Url         string `gorm:"column:url" json:"url"`
 	Description string `gorm:"column:description" json:"description"`
 }
+
+type ClusterQuery struct {
+	BaseQuery[int64]
+}
