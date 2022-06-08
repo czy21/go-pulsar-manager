@@ -7,12 +7,14 @@ import (
 type Cluster struct {
 }
 
-func (Cluster) SelectPage(query model.ClusterQuery) ([]model.ClusterPO, model.PageModel) {
+func (Cluster) SelectListBy(query model.ClusterQuery) []model.ClusterPO {
 	d := dbClient.Model(&model.ClusterPO{})
 	if len(query.Name) > 0 {
 		d.Where(" name like ? ", query.Name+"%")
 	}
-	return Base[model.ClusterPO]{DB: d}.SelectPage(query.PageIndex, query.PageSize)
+	var list []model.ClusterPO
+	d.Find(&list)
+	return list
 }
 
 func (Cluster) InsertOne(po model.ClusterPO) {

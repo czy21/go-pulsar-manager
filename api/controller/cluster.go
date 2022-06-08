@@ -1,7 +1,6 @@
 package controller
 
 import (
-	"github.com/czyhome/go-pulsar-manager/constant"
 	"github.com/czyhome/go-pulsar-manager/exception"
 	"github.com/czyhome/go-pulsar-manager/model"
 	"github.com/czyhome/go-pulsar-manager/service"
@@ -12,11 +11,9 @@ import (
 
 func ClusterSearch(c *gin.Context) {
 	input := model.ClusterQuery{}
-	input.PageIndex = constant.DefaultPageIndex
-	input.PageSize = constant.DefaultPageSize
 	err := c.Bind(&input)
 	exception.Check(err)
-	pageResult := service.Cluster{}.Paging(input)
+	pageResult := service.Cluster{}.FindList(input)
 	web.Context{Context: c}.OK(model.ResponseModel{Data: pageResult}.Build())
 }
 

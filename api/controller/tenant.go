@@ -1,12 +1,18 @@
 package controller
 
-import "github.com/gin-gonic/gin"
+import (
+	"github.com/czyhome/go-pulsar-manager/exception"
+	"github.com/czyhome/go-pulsar-manager/model"
+	"github.com/czyhome/go-pulsar-manager/service"
+	"github.com/czyhome/go-pulsar-manager/web"
+	"github.com/gin-gonic/gin"
+)
 
 func TenantSearch(c *gin.Context) {
-	//web.Response{Context: c,
-	//	Data: map[string]interface{}{"status": "success"},
-	//}.Build()
-
+	input := model.TenantQuery{}
+	err := c.Bind(&input)
+	exception.Check(err)
+	web.Context{Context: c}.OK(model.ResponseModel{Data: service.Tenant{}.FindList(input)}.Build())
 }
 
 func TenantAdd(c *gin.Context) {
@@ -26,7 +32,6 @@ func TenantEdit(c *gin.Context) {
 }
 
 func TenantDel(c *gin.Context) {
-
 	//web.Response{Context: c,
 	//	Data: map[string]interface{}{"status": "success"},
 	//}.Build()
