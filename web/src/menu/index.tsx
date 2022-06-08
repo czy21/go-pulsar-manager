@@ -13,6 +13,16 @@ const menus: MenuModel[] = [
         name: "集群",
         path: "/cluster",
         icon: <stub.ref.icon.ai.ClusterOutlined/>,
+    },
+    {
+        name: "租户",
+        path: "/tenant",
+        icon: <stub.ref.icon.ai.ClusterOutlined/>,
+    },
+    {
+        name: "命名空间",
+        path: "/namespace",
+        icon: <stub.ref.icon.ai.ClusterOutlined/>,
     }
 ];
 export default menus

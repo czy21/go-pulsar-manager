@@ -2,7 +2,7 @@ import Layout from '@/layout/Layout'
 import List from './component/List'
 import {renderRoutes, RouteConfig} from "react-router-config";
 
-const PATH = '/cluster'
+const PATH = '/namespace'
 
 let routes: RouteConfig[] = [
     {
