@@ -9,7 +9,7 @@ import (
 	"github.com/spf13/viper"
 )
 
-func EndpointSearch(c *gin.Context) {
+func EnvironmentSearch(c *gin.Context) {
 	input := model.EnvironmentQuery{}
 	err := c.Bind(&input)
 	exception.Check(err)
@@ -17,14 +17,14 @@ func EndpointSearch(c *gin.Context) {
 	web.Context{Context: c}.OK(model.ResponseModel{Data: pageResult}.Build())
 }
 
-func EndpointAdd(c *gin.Context) {
+func EnvironmentAdd(c *gin.Context) {
 	input := model.EnvironmentPO{}
 	err := c.Bind(&input)
 	exception.Check(err)
 	service.Environment{}.Create(input)
 }
 
-func EndpointEdit(c *gin.Context) {
+func EnvironmentEdit(c *gin.Context) {
 
 	//web.Response{Context: c,
 	//	Data: map[string]interface{}{"status": "success"},
@@ -32,7 +32,7 @@ func EndpointEdit(c *gin.Context) {
 	web.Context{Context: c}.OK(model.ResponseModel{Data: viper.Get("name")}.Build())
 }
 
-func EndpointDel(c *gin.Context) {
+func EnvironmentDel(c *gin.Context) {
 
 	//web.Response{Context: c,
 	//	Data: map[string]interface{}{"status": "success"},
@@ -40,14 +40,14 @@ func EndpointDel(c *gin.Context) {
 
 }
 
-func EndpointController(r *gin.Engine) {
+func EnvironmentController(r *gin.Engine) {
 
 	v1 := r.Group("/environment")
 	{
-		v1.POST("/search", EndpointSearch)
-		v1.POST("/add", EndpointAdd)
-		v1.POST("/edit", EndpointEdit)
-		v1.POST("/del", EndpointDel)
+		v1.POST("/search", EnvironmentSearch)
+		v1.POST("/add", EnvironmentAdd)
+		v1.POST("/edit", EnvironmentEdit)
+		v1.POST("/del", EnvironmentDel)
 	}
 
 }
