@@ -51,29 +51,34 @@ const Index: React.FC<any> = (props: any) => {
 
     const handleSearch = (q?: any) => {
         setQuery(q)
-        stub.api.post("environment/search", stub.ref.lodash.omit(q, "total")).then((t: any) => setData({list:t.data.data}))
+        stub.api.post("environment/search", stub.ref.lodash.omit(q, "total")).then((t: any) => setData({list: t.data.data}))
     }
 
     const [clusterAddVisible, setClusterAddVisible] = React.useState<boolean>(false);
 
     return (
         <div>
-            <Filter
-                filters={[
-                    {
-                        "key": "name",
-                        "label": "名称"
-                    }
-                ]}
-                onSearch={handleSearch}
-                page={data.page}
-            />
-            <stub.ref.antd.Space>
-                <stub.ref.antd.Button type={"primary"} onClick={() => setClusterAddVisible(true)}>
-                    {<intl.FormatMessage id={"environment.add"}/>}
-                </stub.ref.antd.Button>
-            </stub.ref.antd.Space>
-            <Table columns={columns}
+            <Table filter={
+                <div>
+                    <Filter
+                        filters={[
+                            {
+                                "key": "name",
+                                "label": "名称"
+                            }
+                        ]}
+                        onSearch={handleSearch}
+                        page={data.page}
+                    />
+                    <stub.ref.antd.Space>
+                        <stub.ref.antd.Button type={"primary"} onClick={() => setClusterAddVisible(true)}>
+                            {<intl.FormatMessage id={"environment.add"}/>}
+                        </stub.ref.antd.Button>
+                    </stub.ref.antd.Space>
+                </div>
+
+            }
+                   columns={columns}
                    list={data.list}
                    page={data.page}
             />
