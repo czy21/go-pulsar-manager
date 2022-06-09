@@ -10,6 +10,11 @@ export interface MenuModel {
 
 const menus: MenuModel[] = [
     {
+        name: "环境",
+        path: "/environment",
+        icon: <stub.ref.icon.ai.ClusterOutlined/>,
+    },
+    {
         name: "集群",
         path: "/cluster",
         icon: <stub.ref.icon.ai.ClusterOutlined/>,

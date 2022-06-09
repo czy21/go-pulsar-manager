@@ -8,7 +8,7 @@ type EnvironmentPO struct {
 }
 
 func (EnvironmentPO) TableName() string {
-	return "endpoint"
+	return "environment"
 }
 
 type EnvironmentDTO struct {

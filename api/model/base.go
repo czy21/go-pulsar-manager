@@ -16,7 +16,10 @@ type PageResult[T any] struct {
 }
 
 type BaseEntity[TID any] struct {
-	Id         TID       `gorm:"column:id" json:"id"`
+	Id TID `gorm:"column:id" json:"id"`
+}
+
+type TrackEntity struct {
 	CreateTime *UnixTime `gorm:"column:create_time;default:null" json:"createTime"`
 	CreateUser string    `gorm:"column:create_user" json:"createUser"`
 	UpdateTime *UnixTime `gorm:"column:update_time;default:null" json:"updateTime"`
