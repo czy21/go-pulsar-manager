@@ -24,7 +24,8 @@ type BaseEntity[TID any] struct {
 }
 
 type BaseQuery[TID any] struct {
-	Name string `json:"name"`
+	Name       string `json:"name"`
+	ServiceUrl string `json:"serviceUrl"`
 }
 
 type SimpleItemModel[T any] struct {

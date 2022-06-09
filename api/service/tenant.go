@@ -3,24 +3,21 @@ package service
 import (
 	"github.com/czyhome/go-pulsar-manager/constant"
 	"github.com/czyhome/go-pulsar-manager/model"
-	"github.com/go-resty/resty/v2"
+	"github.com/czyhome/go-pulsar-manager/util"
 )
 
 type Tenant struct {
 }
 
 func (Tenant) FindList(query model.TenantQuery) []model.TenantDTO {
-	client := resty.New()
-	client.SetBaseURL(query.Url)
-	req := client.R()
-	res, _ := req.Get(constant.PulsarRestPath + "/tenants")
-	var tenants []string
-	_ = client.JSONUnmarshal(res.Body(), &tenants)
+	c := util.HttpUtil{}.NewClient()
+	c.SetBaseURL(query.ServiceUrl)
+	var strings []string
+	c.Get(constant.PulsarRestPath+"/tenants", &strings)
 	var tenantDTOs []model.TenantDTO
-	for _, t := range tenants {
+	for _, t := range strings {
 		var namespaces []string
-		res, _ := req.Get(constant.PulsarRestPath + "/namespaces/" + t)
-		_ = client.JSONUnmarshal(res.Body(), &namespaces)
+		c.Get(constant.PulsarRestPath+"/namespaces/"+t, &namespaces)
 		tenantDTOs = append(tenantDTOs,
 			model.TenantDTO{
 				Name:       t,
