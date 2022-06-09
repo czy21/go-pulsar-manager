@@ -4,17 +4,12 @@ import (
 	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/spf13/viper"
-	"io"
-	"os"
+	"log"
 )
 
 func Boot() {
+	gin.DefaultWriter = log.Writer()
 	r := gin.Default()
-	logFile := viper.GetString("log.file")
-	if logFile != "" {
-		f, _ := os.Create(logFile)
-		gin.DefaultWriter = io.MultiWriter(f)
-	}
 	AdminController(r)
 	ClusterController(r)
 	TenantController(r)
