@@ -7,6 +7,7 @@ import (
 
 func Boot() {
 	bootConfig()
+	bootLog()
 	repository.Boot()
 	controller.Boot()
 }
