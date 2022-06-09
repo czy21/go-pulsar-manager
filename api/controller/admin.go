@@ -11,7 +11,7 @@ import (
 )
 
 func adminProxy(c *gin.Context) {
-	input := model.ClusterQuery{}
+	input := model.EnvironmentQuery{}
 	//err := c.Bind(&input)
 	//exception.Check(err)
 	input.Url = "http://pulsar-proxy.cluster.com"

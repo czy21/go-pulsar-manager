@@ -1,17 +1,31 @@
 package service
 
 import (
+	"github.com/czyhome/go-pulsar-manager/constant"
 	"github.com/czyhome/go-pulsar-manager/model"
-	"github.com/czyhome/go-pulsar-manager/repository"
+	"github.com/czyhome/go-pulsar-manager/util"
 )
 
 type Cluster struct {
 }
 
-func (Cluster) FindList(query model.ClusterQuery) []model.ClusterPO {
-	return repository.Cluster{}.SelectListBy(query)
-}
-
-func (Cluster) Create(po model.ClusterPO) {
-	repository.Cluster{}.InsertOne(po)
+func (Cluster) FindList(query model.ClusterQuery) []model.ClusterDTO {
+	c := util.HttpUtil{}.NewClient()
+	c.SetBaseURL(query.ServiceUrl)
+	var strings []string
+	c.Get(constant.PulsarRestPath+"/clusters", &strings)
+	var rets []model.ClusterDTO
+	for _, t := range strings {
+		var config map[string]interface{}
+		c.Get(constant.PulsarRestPath+"/clusters/"+t, &config)
+		var brokers []string
+		c.Get(constant.PulsarRestPath+"/brokers/"+t, &brokers)
+		rets = append(rets,
+			model.ClusterDTO{
+				Name:    t,
+				Brokers: len(brokers),
+				Config:  config,
+			})
+	}
+	return rets
 }
