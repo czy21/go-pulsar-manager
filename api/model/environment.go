@@ -2,6 +2,7 @@ package model
 
 type EnvironmentPO struct {
 	BaseEntity[int64]
+	TrackEntity
 	Name        string `gorm:"column:name" json:"name"`
 	Url         string `gorm:"column:url" json:"url"`
 	Description string `gorm:"column:description" json:"description"`
@@ -13,6 +14,7 @@ func (EnvironmentPO) TableName() string {
 
 type EnvironmentDTO struct {
 	BaseEntity[int64]
+	TrackEntity
 	Name        string `gorm:"column:name" json:"name"`
 	Url         string `gorm:"column:url" json:"url"`
 	Description string `gorm:"column:description" json:"description"`
