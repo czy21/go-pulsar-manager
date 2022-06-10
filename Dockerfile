@@ -1,4 +1,4 @@
-FROM nginx:1.21.6-alpine
+FROM nginx:1.21.6
 
 RUN echo "/app/main /dev/null 2>&1" > /docker-entrypoint.d/01-api.sh
 RUN chmod +x /docker-entrypoint.d/01-api.sh
