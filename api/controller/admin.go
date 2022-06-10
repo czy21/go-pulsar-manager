@@ -3,6 +3,7 @@ package controller
 import (
 	"fmt"
 	"github.com/czyhome/go-pulsar-manager/constant"
+	"github.com/czyhome/go-pulsar-manager/exception"
 	"github.com/czyhome/go-pulsar-manager/model"
 	"github.com/gin-gonic/gin"
 	"net/http"
@@ -12,9 +13,8 @@ import (
 
 func adminProxy(c *gin.Context) {
 	input := model.EnvironmentQuery{}
-	//err := c.Bind(&input)
-	//exception.Check(err)
-	input.Url = "http://pulsar-proxy.cluster.com"
+	err := c.Bind(&input)
+	exception.Check(err)
 	remote, err := url.Parse(input.Url)
 	if err != nil {
 		panic(err)
