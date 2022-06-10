@@ -21,9 +21,9 @@ type BaseEntity[TID any] struct {
 
 type TrackEntity struct {
 	CreateTime *UnixTime `gorm:"column:create_time;default:null" json:"createTime"`
-	CreateUser string    `gorm:"column:create_user" json:"createUser"`
+	CreateUser int64     `gorm:"column:create_user" json:"createUser"`
 	UpdateTime *UnixTime `gorm:"column:update_time;default:null" json:"updateTime"`
-	UpdateUser string    `gorm:"column:update_user" json:"updateUser"`
+	UpdateUser int64     `gorm:"column:update_user" json:"updateUser"`
 }
 
 type BaseQuery[TID any] struct {
