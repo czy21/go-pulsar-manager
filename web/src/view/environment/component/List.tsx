@@ -58,29 +58,25 @@ const Index: React.FC<any> = (props: any) => {
 
     return (
         <div>
-            <Table filter={
-                <div>
-                    <Filter
-                        filters={[
-                            {
-                                "key": "name",
-                                "label": "名称"
-                            }
-                        ]}
-                        onSearch={handleSearch}
-                        page={data.page}
-                    />
-                    <stub.ref.antd.Space>
-                        <stub.ref.antd.Button type={"primary"} onClick={() => setClusterAddVisible(true)}>
-                            {<intl.FormatMessage id={"environment.add"}/>}
-                        </stub.ref.antd.Button>
-                    </stub.ref.antd.Space>
-                </div>
-
-            }
-                   columns={columns}
-                   list={data.list}
-                   page={data.page}
+            <Filter
+                filters={[
+                    {
+                        "key": "name",
+                        "label": "名称"
+                    }
+                ]}
+                onSearch={handleSearch}
+                page={data.page}
+            />
+            <stub.ref.antd.Space>
+                <stub.ref.antd.Button type={"primary"} onClick={() => setClusterAddVisible(true)}>
+                    {<intl.FormatMessage id={"environment.add"}/>}
+                </stub.ref.antd.Button>
+            </stub.ref.antd.Space>
+            <Table
+                columns={columns}
+                list={data.list}
+                page={data.page}
             />
             <ClusterAdd visible={clusterAddVisible} onChange={() => {
                 setClusterAddVisible(false)
