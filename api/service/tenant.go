@@ -10,6 +10,9 @@ type Tenant struct {
 }
 
 func (Tenant) FindList(query model.TenantQuery) []model.TenantDTO {
+	if query.ServiceUrl == "" {
+		return []model.TenantDTO{}
+	}
 	c := util.HttpUtil{}.NewClient()
 	c.SetBaseURL(query.ServiceUrl)
 	var strings []string

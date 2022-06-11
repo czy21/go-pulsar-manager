@@ -1,7 +1,7 @@
 import stub from "@/init"
 import React from "react";
 import react from "react";
-import ClusterAdd from "./Add"
+import Add from "./Add"
 import {intl, OperationRender, Table} from "@c";
 
 export const mapStateToProps = (state: any) => {
@@ -57,11 +57,11 @@ const Index: React.FC<any> = (props: any) => {
         stub.api.post("cluster/search", q).then((t: any) => setData({"list": t.data.data}))
     }
 
-    const [clusterAddVisible, setClusterAddVisible] = React.useState<boolean>(false);
+    const [addVisible, setAddVisible] = React.useState<boolean>(false);
 
     const extension = (
         <stub.ref.antd.Space>
-            <stub.ref.antd.Button type={"primary"} onClick={() => setClusterAddVisible(true)}>
+            <stub.ref.antd.Button type={"primary"} onClick={() => setAddVisible(true)}>
                 {<intl.FormatMessage id={"cluster.add"}/>}
             </stub.ref.antd.Button>
         </stub.ref.antd.Space>
@@ -88,8 +88,8 @@ const Index: React.FC<any> = (props: any) => {
                 </stub.ref.antd.Form.Item>
             </stub.ref.antd.Form>
             <Table columns={columns} list={data.list} page={data.page}/>
-            <ClusterAdd visible={clusterAddVisible} onChange={() => {
-                setClusterAddVisible(false)
+            <Add visible={addVisible} onChange={() => {
+                setAddVisible(false)
                 handleSearch(query)
             }}/>
         </div>
