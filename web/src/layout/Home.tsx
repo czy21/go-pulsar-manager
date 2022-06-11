@@ -1,9 +1,9 @@
 import styles from './index.less'
 import stub from "@/init";
 import React from "react";
-import Sider from '@/layout/Sider'
-import Header, {mapStateToProps} from '@/layout/Header'
-import Content from '@/layout/Content'
+import Sider from './Sider'
+import Header, {mapStateToProps} from './Header'
+import Content from './Content'
 
 const Index: React.FC<any> = (props: any) => {
 
