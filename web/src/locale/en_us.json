@@ -15,5 +15,10 @@
   "cluster.name": "Name",
   "cluster.brokers": "brokers",
   "cluster.edit": "Edit",
-  "cluster.del": "Del"
+  "cluster.del": "Del",
+  "tenant.add": "Add",
+  "tenant.name": "Name",
+  "tenant.namespaces": "namespaces",
+  "tenant.edit": "Edit",
+  "tenant.del": "Del"
 }

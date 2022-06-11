@@ -2,7 +2,7 @@ import Layout from '@/layout/Layout'
 import List from './component/List'
 import {renderRoutes, RouteConfig} from "react-router-config";
 
-const PATH = '/namespace'
+const PATH = '/tenant'
 
 let routes: RouteConfig[] = [
     {
