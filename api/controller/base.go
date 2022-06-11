@@ -10,6 +10,7 @@ import (
 func Boot() {
 	gin.DefaultWriter = log.Writer()
 	r := gin.Default()
+	OptionController(r)
 	EnvironmentController(r)
 	AdminController(r)
 	ClusterController(r)

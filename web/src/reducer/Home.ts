@@ -11,8 +11,8 @@ const slice = createSlice({
     initialState: {
         collapsed: false,
         locale: {
-            key: "zh_CN",
-            message: locale
+            key: "en_US",
+            message: locale["en_US"]
         } as Locale
     },
     reducers: {
@@ -24,8 +24,7 @@ const slice = createSlice({
         }
     }
 })
-const action = {...slice.actions}
 export default {
     slice,
-    action
+    action: {...slice.actions}
 }

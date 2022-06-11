@@ -2,7 +2,13 @@ import stub from "@/init"
 import React from "react";
 import react from "react";
 import ClusterAdd from "./Add"
-import {Filter, intl, OperationRender, Table} from "@c";
+import {intl, OperationRender, Table} from "@c";
+
+export const mapStateToProps = (state: any) => {
+    return {
+        option: state.option.data,
+    }
+};
 
 const Index: React.FC<any> = (props: any) => {
 
@@ -10,7 +16,7 @@ const Index: React.FC<any> = (props: any) => {
     const [query, setQuery] = React.useState<any>()
 
     react.useEffect(() => {
-        // stub.store.dispatch(stub.reducer.action.option.fetch(["dbInstanceKind", "genderKind"]))
+        stub.store.dispatch(stub.reducer.action.option.fetch(["environment"]))
         handleSearch()
     }, [])
     const operationActions = [
@@ -25,6 +31,7 @@ const Index: React.FC<any> = (props: any) => {
     const columns = [
         {
             key: 'name',
+            primaryKey: true,
             header: <intl.FormatMessage id={"cluster.name"}/>,
             render: (text: any, record: any) => {
                 return (
@@ -35,12 +42,8 @@ const Index: React.FC<any> = (props: any) => {
             }
         },
         {
-            key: 'url',
-            header: <intl.FormatMessage id={"cluster.url"}/>,
-        },
-        {
-            key: 'description',
-            header: <intl.FormatMessage id={"cluster.description"}/>,
+            key: 'brokers',
+            header: <intl.FormatMessage id={"cluster.brokers"}/>,
         },
         {
             key: 'operation',
@@ -51,7 +54,7 @@ const Index: React.FC<any> = (props: any) => {
 
     const handleSearch = (q?: any) => {
         setQuery(q)
-        stub.api.post("cluster/search", stub.ref.lodash.omit(q, "total")).then((t: any) => setData(t.data.data))
+        stub.api.post("cluster/search", q).then((t: any) => setData({"list": t.data.data}))
     }
 
     const [clusterAddVisible, setClusterAddVisible] = React.useState<boolean>(false);
@@ -63,23 +66,28 @@ const Index: React.FC<any> = (props: any) => {
             </stub.ref.antd.Button>
         </stub.ref.antd.Space>
     )
-
+    const [form] = stub.ref.antd.Form.useForm();
     return (
         <div>
-            <Filter
-                filters={[
-                    {
-                        "key": "name",
-                        "label": "名称"
-                    }
-                ]}
-                onSearch={handleSearch}
-                page={data.page}
-            />
-            <Table columns={columns}
-                   list={data.list}
-                   page={data.page}
-            />
+            <stub.ref.antd.Form
+                form={form}
+                layout="inline"
+            >
+                <stub.ref.antd.Form.Item name={"serviceUrl"} label={"环境"}>
+                    <stub.ref.antd.Select style={{width: 120}} options={props.option["environment"]}/>
+                </stub.ref.antd.Form.Item>
+                <stub.ref.antd.Form.Item>
+                    <stub.ref.antd.Button type={"primary"} onClick={() => {
+                        stub.util.basic.validateForm(form.validateFields(),
+                            (value: any) => {
+                                value.serviceUrl = stub.ref.lodash.filter(props.option["environment"], (t: any) => t.value === value.serviceUrl)[0].extra.serviceUrl
+                                handleSearch(value)
+                            })
+                    }}>查询
+                    </stub.ref.antd.Button>
+                </stub.ref.antd.Form.Item>
+            </stub.ref.antd.Form>
+            <Table columns={columns} list={data.list} page={data.page}/>
             <ClusterAdd visible={clusterAddVisible} onChange={() => {
                 setClusterAddVisible(false)
                 handleSearch(query)
@@ -89,4 +97,4 @@ const Index: React.FC<any> = (props: any) => {
 
 }
 
-export default Index
+export default stub.ref.reactRedux.connect(mapStateToProps)(Index)

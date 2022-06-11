@@ -8,7 +8,7 @@ import Content from '@/layout/Content'
 const Index: React.FC<any> = (props: any) => {
 
     return (
-        <stub.ref.intl.IntlProvider locale={"en"} messages={props.locale.message && props.locale.message[props.locale.key]} defaultLocale={"en"}>
+        <stub.ref.intl.IntlProvider locale={"en"} messages={props.locale.message} defaultLocale={"en"}>
             <stub.ref.antd.Layout>
                 <Sider/>
                 <stub.ref.antd.Layout className={styles.container}>

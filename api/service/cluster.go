@@ -10,6 +10,9 @@ type Cluster struct {
 }
 
 func (Cluster) FindList(query model.ClusterQuery) []model.ClusterDTO {
+	if query.ServiceUrl == "" {
+		return []model.ClusterDTO{}
+	}
 	c := util.HttpUtil{}.NewClient()
 	c.SetBaseURL(query.ServiceUrl)
 	var strings []string

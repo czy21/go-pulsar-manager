@@ -5,7 +5,7 @@ const fetch: any = createAsyncThunk(
     'option/fetch',
     async (keys: []) => {
         const res: any = await stub.api.post('option/query', {keys: keys})
-        return res.data
+        return res.data.data
     })
 
 const slice = createSlice({
@@ -20,8 +20,7 @@ const slice = createSlice({
         }
     }
 })
-const action = {...slice.actions, fetch}
 export default {
     slice,
-    action
+    action: {...slice.actions, fetch}
 }
