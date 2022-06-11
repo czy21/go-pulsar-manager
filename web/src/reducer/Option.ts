@@ -3,9 +3,15 @@ import stub from "@/init";
 
 const fetch: any = createAsyncThunk(
     'option/fetch',
-    async (keys: []) => {
-        const res: any = await stub.api.post('option/query', {keys: keys})
+    async (args: any) => {
+        const res: any = await stub.api.post('option/query', {keys: args.keys})
         return res.data.data
+    },
+    {
+        condition: (args, {getState, extra}) => {
+            const {option} = getState() as any
+            return args.force ?? stub.ref.lodash.differenceWith(args.keys, Object.keys(option.data), stub.ref.lodash.isEqual).length > 0
+        }
     })
 
 const slice = createSlice({
@@ -16,7 +22,7 @@ const slice = createSlice({
     reducers: {},
     extraReducers: {
         [fetch.fulfilled]: (state: any, action: any) => {
-            state.data = Object.assign({}, state.data, action.payload)
+            state.data = {...state.data, ...action.payload}
         }
     }
 })

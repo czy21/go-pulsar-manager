@@ -16,7 +16,7 @@ const Index: React.FC<any> = (props: any) => {
     const [query, setQuery] = React.useState<any>()
 
     react.useEffect(() => {
-        stub.store.dispatch(stub.reducer.action.option.fetch(["environment"]))
+        stub.store.dispatch(stub.reducer.action.option.fetch({"keys": ["environment"]}))
         handleSearch()
     }, [])
     const operationActions = [
