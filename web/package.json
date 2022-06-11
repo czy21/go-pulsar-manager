@@ -42,7 +42,7 @@
   },
   "scripts": {
     "start": "craco start",
-    "build": "dotenv -e .env.prod craco build"
+    "build": "rm -rf build && dotenv -e .env.prod craco build"
   },
   "eslintConfig": {
     "extends": "react-app",
