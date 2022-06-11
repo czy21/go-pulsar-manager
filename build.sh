@@ -16,5 +16,4 @@ set -x
 
 ${web_cmd} install --no-lockfile --update-checksums --pure-lockfile && \
 ${web_cmd} build --ignore-engines --pure-lockfile && \
-#tar -czvf web/build/dist.tar.gz -C web/build/dist/ . && \
 cd api/;go build -o build/ -x -v main.go
