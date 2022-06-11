@@ -4,6 +4,8 @@ module.exports = {
         if (pluginOptions.preText) {
             console.log(pluginOptions.preText);
         }
+        webpackConfig.output.path = path.resolve(paths.appBuild, "dist")
+        paths.appBuild = path.resolve(paths.appBuild, "dist")
         webpackConfig.output.publicPath = process.env.REACT_APP_BASE_URL
         return webpackConfig;
     }
