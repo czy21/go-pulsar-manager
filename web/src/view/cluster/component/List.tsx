@@ -4,14 +4,9 @@ import react from "react";
 import Add from "./Add"
 import {intl, OperationRender, Table} from "@c";
 
-export const mapStateToProps = (state: any) => {
-    return {
-        option: state.option.data,
-    }
-};
-
 const Index: React.FC<any> = (props: any) => {
 
+    const optionState = stub.ref.reactRedux.useSelector((state: any) => state.option)
     const [data, setData] = React.useState<any>({})
     const [query, setQuery] = React.useState<any>()
 
@@ -74,13 +69,13 @@ const Index: React.FC<any> = (props: any) => {
                 layout="inline"
             >
                 <stub.ref.antd.Form.Item name={"serviceUrl"} label={"环境"}>
-                    <stub.ref.antd.Select style={{width: 120}} options={props.option["environment"]}/>
+                    <stub.ref.antd.Select style={{width: 120}} options={optionState.data["environment"]}/>
                 </stub.ref.antd.Form.Item>
                 <stub.ref.antd.Form.Item>
                     <stub.ref.antd.Button type={"primary"} onClick={() => {
                         stub.util.basic.validateForm(form.validateFields(),
                             (value: any) => {
-                                value.serviceUrl = stub.ref.lodash.filter(props.option["environment"], (t: any) => t.value === value.serviceUrl)[0].extra.serviceUrl
+                                value.serviceUrl = stub.ref.lodash.filter(optionState.data["environment"], (t: any) => t.value === value.serviceUrl)[0].extra.serviceUrl
                                 handleSearch(value)
                             })
                     }}>查询
@@ -97,4 +92,4 @@ const Index: React.FC<any> = (props: any) => {
 
 }
 
-export default stub.ref.reactRedux.connect(mapStateToProps)(Index)
+export default Index
