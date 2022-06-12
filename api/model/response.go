@@ -12,9 +12,9 @@ func (t UnixTime) MarshalJSON() ([]byte, error) {
 }
 
 type ResponseModel struct {
-	Data      interface{}  `json:"data"`
-	Error     *interface{} `json:"error,omitempty"`
-	Timestamp UnixTime     `json:"timestamp"`
+	Data      interface{} `json:"data"`
+	Error     interface{} `json:"error,omitempty"`
+	Timestamp UnixTime    `json:"timestamp"`
 }
 
 func (r ResponseModel) Build() ResponseModel {

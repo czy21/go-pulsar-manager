@@ -13,7 +13,7 @@ const Header: React.FC<any> = (props: any) => {
     }, [])
 
     react.useEffect(() => {
-        if (optionState.data["environment"]) {
+        if (optionState.data["environment"] && stub.ref.lodash.isEmpty(homeState.environment)) {
             stub.store.dispatch(stub.reducer.action.home.setEnvironment(optionState.data["environment"][0]))
         }
     }, [optionState.data["environment"]])

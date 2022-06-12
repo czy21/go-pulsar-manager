@@ -16,10 +16,7 @@ func adminProxy(c *gin.Context) {
 	err := c.Bind(&input)
 	exception.Check(err)
 	remote, err := url.Parse(input.Url)
-	if err != nil {
-		panic(err)
-	}
-	fmt.Println(c.Param("proxyPath"))
+	exception.Check(err)
 	proxy := httputil.NewSingleHostReverseProxy(remote)
 	proxy.Director = func(req *http.Request) {
 		req.Header = c.Request.Header
