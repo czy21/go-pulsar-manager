@@ -22,6 +22,7 @@ const Index: React.FC<TableFormProp> = (props: TableFormProp | any) => {
                     addForm.resetFields()
                     setConnectState(undefined)
                     props.onChange()
+                    stub.store.dispatch(stub.reducer.action.option.fetch({keys: ["environment"], force: true}))
                 })
             })
     };
