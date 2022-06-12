@@ -4,18 +4,12 @@ import styles from './index.less'
 import {MenuFoldOutlined, MenuUnfoldOutlined} from '@ant-design/icons';
 import locale from "@/locale";
 
-export const mapStateToProps = (state: any) => {
-    return {
-        collapsed: state.home.collapsed,
-        locale: state.home.locale
-    }
-};
 const Header: React.FC<any> = (props: any) => {
     return (
         <stub.ref.antd.Layout.Header className={styles.header}>
             <stub.ref.antd.Row justify="space-between">
                 <stub.ref.antd.Col>
-                    {React.createElement(props.collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
+                    {React.createElement(props.homeState.collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
                         className: styles.collapse,
                         onClick: () => {
                             stub.store.dispatch(stub.reducer.action.home.collapse())
@@ -29,7 +23,7 @@ const Header: React.FC<any> = (props: any) => {
                                 label: v["global.language.name"], value: k
                             }
                         })}
-                        defaultValue={props.locale.key}
+                        defaultValue={props.homeState.locale.key}
                         onSelect={(value: any, option: any) => {
                             stub.store.dispatch(stub.reducer.action.home.switchLocale({key: value, message: {...locale["en_US"], ...locale[`${value}`]}}))
                         }}
@@ -43,4 +37,4 @@ const Header: React.FC<any> = (props: any) => {
 
 }
 
-export default stub.ref.reactRedux.connect(mapStateToProps)(Header)
+export default Header

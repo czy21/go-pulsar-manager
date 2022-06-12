@@ -10,7 +10,6 @@ const Index: React.FC<any> = (props: any) => {
     const [query, setQuery] = React.useState<any>()
 
     react.useEffect(() => {
-        // stub.store.dispatch(stub.reducer.action.option.fetch(["dbInstanceKind", "genderKind"]))
         handleSearch()
     }, [])
     const operationActions = [
