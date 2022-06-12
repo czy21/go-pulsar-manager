@@ -1,6 +1,7 @@
 package web
 
 import (
+	"fmt"
 	"github.com/czyhome/go-pulsar-manager/exception"
 	"github.com/czyhome/go-pulsar-manager/model"
 	"github.com/gin-gonic/gin"
@@ -13,9 +14,11 @@ func ErrorHandle() gin.HandlerFunc {
 			if err := recover(); err != nil {
 				switch err.(type) {
 				case exception.Model:
-					c.JSON(http.StatusOK, model.ResponseModel{Error: &err})
+					c.JSON(http.StatusOK, model.ResponseModel{Error: err}.Build())
 					break
 				}
+				eModel := exception.Model{Code: fmt.Sprint(http.StatusInternalServerError), Message: fmt.Sprint(err)}
+				c.JSON(http.StatusOK, model.ResponseModel{Error: eModel}.Build())
 				panic(err)
 			}
 		}()

@@ -19,6 +19,7 @@ func (HttpUtil) NewClient() HttpUtil {
 
 func (h HttpUtil) Get(url string, v interface{}) {
 	res, err := h.R().Get(url)
+	exception.Check(err)
 	var errMsg string
 	if res.IsError() {
 		errMsg = string(res.Body())
