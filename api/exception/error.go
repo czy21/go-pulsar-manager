@@ -6,11 +6,11 @@ func Check(err error) {
 	}
 }
 
-type Model struct {
+type MessageModel struct {
 	Code    string `json:"code"`
 	Message string `json:"message"`
 }
 
-func New(message string) Model {
-	panic(Model{Message: message})
+func New(message string) MessageModel {
+	panic(MessageModel{Message: message})
 }

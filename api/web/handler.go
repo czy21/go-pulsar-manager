@@ -13,11 +13,11 @@ func ErrorHandle() gin.HandlerFunc {
 		defer func() {
 			if err := recover(); err != nil {
 				switch err.(type) {
-				case exception.Model:
+				case exception.MessageModel:
 					c.JSON(http.StatusOK, model.ResponseModel{Error: err}.Build())
 					break
 				}
-				eModel := exception.Model{Code: fmt.Sprint(http.StatusInternalServerError), Message: fmt.Sprint(err)}
+				eModel := exception.MessageModel{Code: fmt.Sprint(http.StatusInternalServerError), Message: fmt.Sprint(err)}
 				c.JSON(http.StatusOK, model.ResponseModel{Error: eModel}.Build())
 				panic(err)
 			}
