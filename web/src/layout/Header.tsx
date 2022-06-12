@@ -7,16 +7,16 @@ import locale from "@/locale";
 
 const Header: React.FC<any> = (props: any) => {
     const homeState = stub.ref.reactRedux.useSelector((state: any) => state.home)
-    const option = stub.ref.reactRedux.useSelector((state: any) => state.option.data)
+    const optionState = stub.ref.reactRedux.useSelector((state: any) => state.option)
     react.useEffect(() => {
         stub.store.dispatch(stub.reducer.action.option.fetch({"keys": ["environment"]}))
     }, [])
 
     react.useEffect(() => {
-        if (option["environment"]) {
-            stub.store.dispatch(stub.reducer.action.home.setEnvironment(option["environment"][0]))
+        if (optionState.data["environment"]) {
+            stub.store.dispatch(stub.reducer.action.home.setEnvironment(optionState.data["environment"][0]))
         }
-    }, [option["environment"]])
+    }, [optionState.data["environment"]])
 
     return (
         <stub.ref.antd.Layout.Header className={styles.header}>
@@ -31,7 +31,7 @@ const Header: React.FC<any> = (props: any) => {
                 </stub.ref.antd.Col>
                 <stub.ref.antd.Col>
                     <stub.ref.antd.Select
-                        options={option["environment"]}
+                        options={optionState.data["environment"]}
                         defaultValue={homeState.environment.value}
                         key={homeState.environment.value}
                         onSelect={(value: any, option: any) => {
