@@ -33,8 +33,9 @@ function recursiveMenu(routes: any) {
 }
 
 const Index: React.FC<any> = (props: any) => {
+    const homeState = stub.ref.reactRedux.useSelector((state: any) => state.home)
     return (
-        <stub.ref.antd.Layout.Sider theme="dark" trigger={null} collapsible collapsed={props.homeState.collapsed}>
+        <stub.ref.antd.Layout.Sider theme="dark" trigger={null} collapsible collapsed={homeState.collapsed}>
             <stub.ref.antd.Menu theme="dark" mode="inline" defaultSelectedKeys={["0"]}>
                 {recursiveMenu(menus)}
             </stub.ref.antd.Menu>

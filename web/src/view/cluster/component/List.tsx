@@ -68,15 +68,15 @@ const Index: React.FC<any> = (props: any) => {
                 form={form}
                 layout="inline"
             >
-                <stub.ref.antd.Form.Item name={"serviceUrl"} label={"环境"}>
+                <stub.ref.antd.Form.Item name={"environment"} label={"环境"}>
                     <stub.ref.antd.Select style={{width: 120}} options={optionState.data["environment"]}/>
                 </stub.ref.antd.Form.Item>
                 <stub.ref.antd.Form.Item>
                     <stub.ref.antd.Button type={"primary"} onClick={() => {
                         stub.util.basic.validateForm(form.validateFields(),
                             (value: any) => {
-                                value.serviceUrl = stub.ref.lodash.filter(optionState.data["environment"], (t: any) => t.value === value.serviceUrl)[0].extra.serviceUrl
-                                handleSearch(value)
+                                value.serviceUrl = stub.ref.lodash.filter(optionState.data["environment"], (t: any) => t.value === value.environment)[0].extra.serviceUrl
+                                handleSearch(stub.ref.lodash.omit(value, ["environment"]))
                             })
                     }}>查询
                     </stub.ref.antd.Button>
