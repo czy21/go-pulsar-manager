@@ -76,7 +76,7 @@ const Index: React.FC<any> = (props: any) => {
                                 value.serviceUrl = homeState.environment.extra.serviceUrl
                                 handleSearch(value)
                             })
-                    }}>查询
+                    }}>{<intl.FormatMessage id={"common.filter.search"}/>}
                     </stub.ref.antd.Button>
                 </stub.ref.antd.Form.Item>
             </stub.ref.antd.Form>

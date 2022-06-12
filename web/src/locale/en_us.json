@@ -13,12 +13,12 @@
   "environment.del": "Del",
   "cluster.add": "Add",
   "cluster.name": "Name",
-  "cluster.brokers": "brokers",
+  "cluster.brokers": "Brokers",
   "cluster.edit": "Edit",
   "cluster.del": "Del",
   "tenant.add": "Add",
   "tenant.name": "Name",
-  "tenant.namespaces": "namespaces",
+  "tenant.namespaces": "Namespaces",
   "tenant.edit": "Edit",
   "tenant.del": "Del"
 }
