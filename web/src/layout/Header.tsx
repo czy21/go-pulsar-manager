@@ -7,16 +7,17 @@ import locale from "@/locale";
 
 const Header: React.FC<any> = (props: any) => {
     const homeState = stub.ref.reactRedux.useSelector((state: any) => state.home)
+    const option = stub.ref.reactRedux.useSelector((state: any) => state.option.data)
     react.useEffect(() => {
-        stub.api.post('option/query', {keys: ["environment"]})
-            .then((t: any) => {
-                const e = t.data.data["environment"]
-                stub.store.dispatch(stub.reducer.action.home.setEnvironments(e))
-                if (e) {
-                    stub.store.dispatch(stub.reducer.action.home.setEnvironment(e[0]))
-                }
-            })
+        stub.store.dispatch(stub.reducer.action.option.fetch({"keys": ["environment"]}))
     }, [])
+
+    react.useEffect(() => {
+        if (option["environment"]) {
+            stub.store.dispatch(stub.reducer.action.home.setEnvironment(option["environment"][0]))
+        }
+    }, [option["environment"]])
+
     return (
         <stub.ref.antd.Layout.Header className={styles.header}>
             <stub.ref.antd.Row justify="space-between">
@@ -30,9 +31,12 @@ const Header: React.FC<any> = (props: any) => {
                 </stub.ref.antd.Col>
                 <stub.ref.antd.Col>
                     <stub.ref.antd.Select
-                        options={homeState.environments}
+                        options={option["environment"]}
                         defaultValue={homeState.environment.value}
                         key={homeState.environment.value}
+                        onSelect={(value: any, option: any) => {
+                            stub.store.dispatch(stub.reducer.action.home.setEnvironment(option))
+                        }}
                     />
                     <stub.ref.antd.Select
                         options={Object.entries<any>(locale || []).map(([k, v]) => {
