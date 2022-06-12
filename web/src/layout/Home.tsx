@@ -10,9 +10,9 @@ const Index: React.FC<any> = () => {
     return (
         <stub.ref.intl.IntlProvider locale={"en"} messages={homeState.locale.message}>
             <stub.ref.antd.Layout>
-                <Sider homeState={homeState}/>
+                <Sider/>
                 <stub.ref.antd.Layout className={styles.container}>
-                    <Header homeState={homeState}/>
+                    <Header/>
                     <Content/>
                 </stub.ref.antd.Layout>
             </stub.ref.antd.Layout>

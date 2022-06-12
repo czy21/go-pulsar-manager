@@ -78,4 +78,4 @@ const Index: React.FC<TableFormProp> = (props: TableFormProp | any) => {
     )
 }
 
-export default stub.ref.reactRedux.connect(stub.util.basic.mapGlobalOptionStateToProps)(Index)
+export default Index

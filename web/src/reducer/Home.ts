@@ -13,7 +13,9 @@ const slice = createSlice({
         locale: {
             key: "en_US",
             message: locale["en_US"]
-        } as Locale
+        } as Locale,
+        environment: {},
+        environments: []
     },
     reducers: {
         collapse: (state) => {
@@ -21,6 +23,12 @@ const slice = createSlice({
         },
         switchLocale: (state, action) => {
             return {...state, locale: {...state.locale, ...action.payload}}
+        },
+        setEnvironment: (state, action) => {
+            return {...state, environment: action.payload};
+        },
+        setEnvironments: (state, action) => {
+            return {...state, environments: action.payload};
         }
     }
 })
