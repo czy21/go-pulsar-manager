@@ -5,15 +5,13 @@ import Add from "./Add"
 import {intl, OperationRender, Table} from "@c";
 
 const Index: React.FC<any> = (props: any) => {
-
-    const optionState = stub.ref.reactRedux.useSelector((state: any) => state.option)
+    const homeState = stub.ref.reactRedux.useSelector((state: any) => state.home)
     const [data, setData] = React.useState<any>({})
-    const [query, setQuery] = React.useState<any>()
+    const [query, setQuery] = React.useState<any>({})
 
     react.useEffect(() => {
-        stub.store.dispatch(stub.reducer.action.option.fetch({"keys": ["environment"]}))
-        handleSearch()
-    }, [])
+        handleSearch(query)
+    }, [homeState.environment])
     const operationActions = [
         {
             key: "edit",
@@ -48,8 +46,11 @@ const Index: React.FC<any> = (props: any) => {
     ];
 
     const handleSearch = (q?: any) => {
-        setQuery(q)
-        stub.api.post("cluster/search", q).then((t: any) => setData({"list": t.data.data}))
+        if (homeState.environment.extra) {
+            q.serviceUrl = homeState.environment.extra.serviceUrl
+            setQuery(q)
+            stub.api.post("cluster/search", q).then((t: any) => setData({"list": t.data.data}))
+        }
     }
 
     const [addVisible, setAddVisible] = React.useState<boolean>(false);
@@ -68,15 +69,12 @@ const Index: React.FC<any> = (props: any) => {
                 form={form}
                 layout="inline"
             >
-                <stub.ref.antd.Form.Item name={"environment"} label={"环境"}>
-                    <stub.ref.antd.Select style={{width: 120}} options={optionState.data["environment"]}/>
-                </stub.ref.antd.Form.Item>
                 <stub.ref.antd.Form.Item>
                     <stub.ref.antd.Button type={"primary"} onClick={() => {
                         stub.util.basic.validateForm(form.validateFields(),
                             (value: any) => {
-                                value.serviceUrl = stub.ref.lodash.filter(optionState.data["environment"], (t: any) => t.value === value.environment)[0].extra.serviceUrl
-                                handleSearch(stub.ref.lodash.omit(value, ["environment"]))
+                                value.serviceUrl = homeState.environment.extra.serviceUrl
+                                handleSearch(value)
                             })
                     }}>查询
                     </stub.ref.antd.Button>
