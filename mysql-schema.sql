@@ -1,3 +1,5 @@
+create database if not exists go-pulsar-manager default charset utf8mb4 collate utf8mb4_0900_ai_ci;
+use go-pulsar-manager;
 CREATE TABLE `environment`
 (
     id             bigint  NOT NULL AUTO_INCREMENT NOT NULL,

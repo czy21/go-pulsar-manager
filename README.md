@@ -12,6 +12,7 @@ sed -i 's|http://gitea.cluster.com/czyhome|https://github.com/czy21|g' .gitmodul
 git submodule update --recursive --init
 ```
 ### Quickstart
+init mysql-schema.sql
 ```bash
 bash build.sh
 cp api/app.yaml api/build/
