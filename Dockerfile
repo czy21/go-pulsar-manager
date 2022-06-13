@@ -1,4 +1,4 @@
-FROM golang:1.18.3-alpine
+FROM golang:1.18.3-bullseye
 WORKDIR /app/
 COPY ./web/build/ /app/dist/
 COPY ./api/build/ /app/
