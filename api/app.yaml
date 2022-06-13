@@ -1,3 +1,6 @@
+web:
+  dist: ../web/build/
+
 server:
   port: 8080
 
