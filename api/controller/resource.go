@@ -25,8 +25,8 @@ func resourceProxy(c *gin.Context) {
 }
 
 func ResourceController(r *gin.Engine) {
-	indexFile := fmt.Sprintf("%s/index.html", "dist")
-	staticFile := fmt.Sprintf("%s/static/", "dist")
+	indexFile := fmt.Sprintf("%s/index.html", viper.GetString("web.dist"))
+	staticFile := fmt.Sprintf("%s/static/", viper.GetString("web.dist"))
 	r.NoRoute(func(c *gin.Context) {
 		c.File(indexFile)
 	})
