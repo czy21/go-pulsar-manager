@@ -1,4 +1,5 @@
-FROM golang:1.18.3-bullseye
+FROM alpine:3.16
+
 COPY ./web/build/ /app/dist/
 COPY ./api/build/ /app/
 RUN chmod +x /app/main
