@@ -16,6 +16,7 @@ init mysql-schema.sql
 ```bash
 bash build.sh
 cp api/app.yaml api/build/
+# modify db.url in api/build/app.yaml
 cd api/build/
 chmod +x main
 GIN_MODE=release ./main
