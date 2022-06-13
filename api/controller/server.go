@@ -11,6 +11,9 @@ import (
 
 func Boot() {
 	gin.DefaultWriter = log.Writer()
+	if viper.GetString("log.file") != "" {
+		gin.DisableConsoleColor()
+	}
 	var g errgroup.Group
 	g.Go(func() error {
 		address := fmt.Sprintf(":%s", viper.GetString("server.port"))
