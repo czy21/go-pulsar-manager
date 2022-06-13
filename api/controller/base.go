@@ -6,6 +6,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/spf13/viper"
 	"log"
+	"os"
 )
 
 func Boot() {
@@ -17,6 +18,9 @@ func Boot() {
 	AdminController(r1)
 	ClusterController(r1)
 	TenantController(r1)
-	ResourceController(r1)
+	mode := os.Getenv("GIN_MODE")
+	if mode == "release" {
+		ResourceController(r1)
+	}
 	_ = r1.Run(fmt.Sprintf(":%s", viper.GetString("server.port")))
 }

@@ -1,6 +1,5 @@
 FROM golang:1.18.3-bullseye
-WORKDIR /app/
 COPY ./web/build/ /app/dist/
 COPY ./api/build/ /app/
-
-CMD ["main"]
+RUN chmod +x /app/main
+CMD ["/app/main"]
