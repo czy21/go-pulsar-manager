@@ -72,11 +72,7 @@ const Index: React.FC<any> = (props: any) => {
                     {<intl.FormatMessage id={"environment.add"}/>}
                 </stub.ref.antd.Button>
             </stub.ref.antd.Space>
-            <Table
-                columns={columns}
-                list={data.list}
-                page={data.page}
-            />
+            <Table columns={columns} list={data.list}/>
             <ClusterAdd visible={clusterAddVisible} onChange={() => {
                 setClusterAddVisible(false)
                 handleSearch(query)

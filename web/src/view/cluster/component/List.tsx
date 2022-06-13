@@ -80,7 +80,7 @@ const Index: React.FC<any> = (props: any) => {
                     </stub.ref.antd.Button>
                 </stub.ref.antd.Form.Item>
             </stub.ref.antd.Form>
-            <Table columns={columns} list={data.list} page={data.page}/>
+            <Table columns={columns} list={data.list}/>
             <Add visible={addVisible} onChange={() => {
                 setAddVisible(false)
                 handleSearch(query)

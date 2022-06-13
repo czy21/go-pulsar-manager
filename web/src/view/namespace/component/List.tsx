@@ -75,10 +75,7 @@ const Index: React.FC<any> = (props: any) => {
                 onSearch={handleSearch}
                 page={data.page}
             />
-            <Table columns={columns}
-                   list={data.list}
-                   page={data.page}
-            />
+            <Table columns={columns} list={data.list}/>
             <NamespaceAdd visible={clusterAddVisible} onChange={() => {
                 setClusterAddVisible(false)
                 handleSearch(query)
