@@ -14,6 +14,7 @@ git submodule update --recursive --init
 ### Quickstart
 ```bash
 bash build.sh
+cp api/app.yaml api/build/
 cd api/build/
 chmod +x main
 GIN_MODE=release ./main

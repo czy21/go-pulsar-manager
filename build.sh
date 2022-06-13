@@ -16,4 +16,4 @@ set -x
 
 ${web_cmd} install --no-lockfile --update-checksums --pure-lockfile && \
 ${web_cmd} build --ignore-engines --pure-lockfile && \
-$(cd api/;go build -x -v -o build/ main.go;cp app.yaml build/)
+$(cd api/;go build -x -v -o build/ main.go)
