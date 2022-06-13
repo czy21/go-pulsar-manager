@@ -8,6 +8,7 @@ import (
 	"net/http"
 	"net/http/httputil"
 	"net/url"
+	"os"
 )
 
 func resourceProxy(c *gin.Context) {
@@ -24,13 +25,18 @@ func resourceProxy(c *gin.Context) {
 	proxy.ServeHTTP(c.Writer, c.Request)
 }
 
-func ResourceController(r *gin.Engine) {
-	indexFile := fmt.Sprintf("%s/index.html", viper.GetString("web.dist"))
-	staticFile := fmt.Sprintf("%s/static/", viper.GetString("web.dist"))
-	r.NoRoute(func(c *gin.Context) {
-		c.File(indexFile)
-	})
-	r.StaticFile("/", indexFile)
-	r.Static("/static/", staticFile)
-	r.Any("/api/*proxyPath", resourceProxy)
+func WebEngine() *gin.Engine {
+	r := gin.New()
+	mode := os.Getenv("GIN_MODE")
+	if mode == "release" {
+		indexFile := fmt.Sprintf("%s/index.html", viper.GetString("web.dist"))
+		staticFile := fmt.Sprintf("%s/static/", viper.GetString("web.dist"))
+		r.NoRoute(func(c *gin.Context) {
+			c.File(indexFile)
+		})
+		r.StaticFile("/", indexFile)
+		r.Static("/static/", staticFile)
+		r.Any("/api/*proxyPath", resourceProxy)
+	}
+	return r
 }
