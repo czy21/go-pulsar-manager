@@ -25,11 +25,11 @@ func (h HttpUtil) Get(url string, v interface{}) {
 		errMsg = string(res.Body())
 	}
 	logParam := gin.LogFormatterParams{StatusCode: res.StatusCode(), Method: http.MethodGet, Path: url, ClientIP: h.BaseURL}
-	log.Printf("|%s %3d %s| %13v | %15s |%s %-7s %s %#v\n%s",
-		logParam.StatusCodeColor(), logParam.StatusCode, logParam.ResetColor(),
+	log.Printf("| %3d | %13v | %15s |%-7s %#v\n%s",
+		logParam.StatusCode,
 		res.Time(),
 		logParam.ClientIP,
-		logParam.MethodColor(), logParam.Method, logParam.ResetColor(),
+		logParam.Method,
 		logParam.Path,
 		errMsg)
 	err = h.JSONUnmarshal(res.Body(), v)
