@@ -6,6 +6,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/spf13/viper"
 	"log"
+	"net/http"
 	"os"
 )
 
@@ -22,5 +23,7 @@ func Boot() {
 	if mode == "release" {
 		ResourceController(r1)
 	}
-	_ = r1.Run(fmt.Sprintf(":%s", viper.GetString("server.port")))
+	address := fmt.Sprintf(":%s", viper.GetString("server.port"))
+	log.Printf("Listening and serving HTTP on %s\n", address)
+	_ = http.ListenAndServe(address, r1)
 }
