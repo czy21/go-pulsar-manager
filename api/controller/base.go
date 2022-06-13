@@ -10,12 +10,13 @@ import (
 
 func Boot() {
 	gin.DefaultWriter = log.Writer()
-	r := gin.Default()
-	r.Use(web.ErrorHandle())
-	OptionController(r)
-	EnvironmentController(r)
-	AdminController(r)
-	ClusterController(r)
-	TenantController(r)
-	_ = r.Run(fmt.Sprintf(":%s", viper.GetString("server.port")))
+	r1 := gin.Default()
+	r1.Use(web.ErrorHandle())
+	OptionController(r1)
+	EnvironmentController(r1)
+	AdminController(r1)
+	ClusterController(r1)
+	TenantController(r1)
+	ResourceController(r1)
+	_ = r1.Run(fmt.Sprintf(":%s", viper.GetString("server.port")))
 }
