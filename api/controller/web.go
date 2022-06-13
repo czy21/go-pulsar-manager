@@ -3,6 +3,7 @@ package controller
 import (
 	"fmt"
 	"github.com/czyhome/go-pulsar-manager/exception"
+	"github.com/czyhome/go-pulsar-manager/web"
 	"github.com/gin-gonic/gin"
 	"github.com/spf13/viper"
 	"net/http"
@@ -27,6 +28,10 @@ func resourceProxy(c *gin.Context) {
 
 func WebEngine() *gin.Engine {
 	r := gin.New()
+	r.Use(gin.LoggerWithConfig(gin.LoggerConfig{
+		Formatter: web.LogFormatter("WEB"),
+	}))
+	r.Use(gin.Recovery())
 	mode := os.Getenv("GIN_MODE")
 	if mode == "release" {
 		indexFile := fmt.Sprintf("%s/index.html", viper.GetString("web.dist"))

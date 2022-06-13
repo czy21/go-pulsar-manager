@@ -25,7 +25,7 @@ func (h HttpUtil) Get(url string, v interface{}) {
 		errMsg = string(res.Body())
 	}
 	logParam := gin.LogFormatterParams{StatusCode: res.StatusCode(), Method: http.MethodGet, Path: url, ClientIP: h.BaseURL}
-	log.Printf("  |%s %3d %s| %13v | %15s |%s %-7s %s %#v\n%s",
+	log.Printf("|%s %3d %s| %13v | %15s |%s %-7s %s %#v\n%s",
 		logParam.StatusCodeColor(), logParam.StatusCode, logParam.ResetColor(),
 		res.Time(),
 		logParam.ClientIP,
